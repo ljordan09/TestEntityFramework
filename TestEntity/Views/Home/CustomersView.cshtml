@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "CustomersView";
+}
+
+<h2>CustomersView</h2>
+<form action="/Home/ListCustomersByCountry" method="get">
+    <h3>County</h3>
+    <select name="Country">
+       @foreach(var Country in ViewBag.CountryList)
+       {
+           <option value="@Country">@Country</option>
+       }
+    </select>
+    <input type="submit" value="Search by Country"/>
+</form>
+<br/>
+<form action="/Home/ListCustomersByName" method="get">
+    <h3>Search by Customer Name:</h3>
+    <input type="text" class="form-control "name="ContactName"/>
+    <input type="submit" value="Submit" />
+</form>
+<br/>
+    
+    
+    
+
+
+
+<table class="table">
+    <tr>
+        <th>Customer ID</th>
+        <th>Customer Name</th>
+        <th>Company Name</th>
+        <th>City</th>
+        <th>Country</th>
+    </tr>
+
+    @foreach (var CustomerRecord in ViewBag.CustomerList)
+    {
+        <tr>
+            <td>
+                @CustomerRecord.CustomerID
+            </td>
+            <td>
+                @CustomerRecord.ContactName
+            </td>
+            <td>
+                @CustomerRecord.CompanyName
+            </td>
+            <td>
+                @CustomerRecord.City
+            </td>
+            <td>
+                @CustomerRecord.Country
+            </td>
+            <td><a href="/Home/DeleteCustomer?CustomerID =@CustomerRecord.CustomerID">Delete</a></td>
+
+        </tr>
+
+
+    }
+
+</table>
+
